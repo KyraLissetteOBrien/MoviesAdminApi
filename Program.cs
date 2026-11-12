@@ -8,7 +8,6 @@ builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(builder.Config
       .GetConnectionString("MoviesAdminContext")));
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

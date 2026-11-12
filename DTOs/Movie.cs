@@ -5,7 +5,9 @@ namespace MoviesAdminApi.DTOs
     {
         public int Id { get; set; }
         public int GenreId { get; set; }
+        public Genre Genre { get; set; } = null!;
         public int AudienceRatingId { get; set; }
+        public AudienceRating AudienceRating { get; set; } = null!;
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public int Runtime { get; set; }
