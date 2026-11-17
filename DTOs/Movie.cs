@@ -17,5 +17,6 @@ namespace MoviesAdminApi.DTOs
         public string Directors { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
+        public List<Review> Reviews { get; set; } = new();
     }
 }

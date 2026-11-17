@@ -5,7 +5,11 @@ info:
 
 http:
   method: GET
-  url: https://localhost:7091/api/MoviesAdminApi
+  url: https://localhost:7091/api/MoviesAdminApi/:id
+  params:
+    - name: id
+      value: "1012"
+      type: path
   auth: inherit
 
 settings:
