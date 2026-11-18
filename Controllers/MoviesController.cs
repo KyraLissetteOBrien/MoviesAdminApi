@@ -43,13 +43,14 @@ namespace MoviesAdminApi.Controllers
 
         // GET api/movies/{id}
         [HttpGet("{id:int}")] // Flagging to the get reques
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovieById(int id)
+        public async Task<ActionResult<Movie>> GetMovieById(int id)
         {
             var sql = @"SELECT m.*, g.*, a.*, r.*, u.*
                 FROM Movie m
                 INNER JOIN Genre g ON m.GenreId = g.Id
                 INNER JOIN AudienceRating a ON m.AudienceRatingId = a.Id
                 LEFT OUTER JOIN CriticReview r ON m.Id = r.MovieId
+                AND r.IsPublished = 1
                 LEFT OUTER JOIN UserSnapshot u ON u.UserId = r.CreatedBy
                 WHERE m.Id = @Id";
 
@@ -81,6 +82,9 @@ namespace MoviesAdminApi.Controllers
                 new { Id = id }, // Dapper takes id and plugs it in, replace @Id in the sql 
                 splitOn: "Id,Id,Id,UserId" // Specify what column to split on (the second tables Id column in this case) 
             );
+
+            if (movie == null)
+                return NotFound();
 
             return Ok(movie);
         }
